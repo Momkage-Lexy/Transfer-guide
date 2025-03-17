@@ -1,0 +1,273 @@
+@model transferguide.Models.Transfer
+
+@{
+    ViewData["Title"] = "Report";
+}
+
+<div class="container">
+    <div class="row banner">
+        <h1 id="heading">TRANSFER GUIDE</h1>
+        <h2 id="subheading">@Model.CollegeName "\+2192" Western Oregon University</h2>
+    </div>
+    <br>
+    <div class="row subtitle">
+        <h3 id="earn-a">Earn a @Model.Degree in</h3>
+        <h4 id="major">@Model.Major</h4>
+    </div>
+
+    <div class="row steps">
+        <div class="col-md-5">
+            <h3 class="red-section-header" id="step1">STEP 1</h3>
+            <ul>
+                <li>
+                     Complete an AS or AAOT/ASOT at Chemeketa (see Sample Plan of courses on next page)
+                </li>
+            </ul>
+            <div class="grey-box">
+                <h3 class="red-section-header" id="need-help">NEED HELP</h3>
+                <p class="need-help-body"><strong>I have questions about my major classes.</strong></p>
+                <p class="need-help-body">Contact our faculty advisor @Model.AdvisorName at: @Model.AdvisorEmail</p>
+
+                <br>
+
+                <p class="need-help-body"><strong>I have general questions about WOU OREGON applying for admission</strong></p>
+                <p class="need-help-body">Contact us at <a href="mailto:admissions@wou.edu">admissons@wou.edu</a> or schedule an appointment with our transfer specialist, Briana, at <a href="https://calendly.com/navareteb/admissions">https://calendly.com/navareteb/admissions</a></p>
+
+                <br>
+
+                <p class="need-help-body"><strong>I have questions about how my credits will transfer and fulfill General Education requirement.</strong></p>
+                <p class="need-help-body">Contact our General Education Program at <a href="mailto:gened@wou.edu">gened@wou.edu</a> or visit <a href="wou.edu/gened/faq">wou.edu/gened/faq</a></p>
+            </div>
+            <br>
+            <img src="https://d3e7od0na2igqa.cloudfront.net/wp-content/blogs.dir/613/files/2024/12/wolves_wordmark_CLR.png" alt="wou logo with text: *Western OREGON University*" width="300px";>
+            <a href="mailto:advising@wou.edu" id="logo-email">advising@wou.edu</a>
+        </div>
+        <div class="col-md-7 step2">
+            <h3 class="red-section-header" id="step2">STEP 2</h3>
+            <ul>
+                <li>
+                    Apply to transfer year2Container addYear2Course final year at @Model.CollegeName
+                </li>
+                <li>
+                    To apply, you will need:
+                    <ul>
+                        <li>
+                            <a href="https://network.wou.edu/apply/">WOU Admission Application</a>
+                        </li>
+                        <li>
+                            Transcripts from @Model.CollegeName
+                        </li>
+                        <li>
+                            Don't forget to add WOU to your FASFA!<br>Our school code is:a 003209
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h4 class="black-bold-subheader">IMPORTANT NOTES</h4>
+            <ul>
+                @foreach (var item in Model.ImportantNotes)
+                    {
+                        <li>@item</li>
+                    }
+            </ul>
+            <h4 class="black-bold-subheader">RESOURCES and INFORMATION</h4>
+            <ul>
+                <li>AAOT, ASOT, and AS degrees from @Model.CollegeName will Complete all General Education requirements at WOU.</li>
+                <li>You do not need to complete a degree to transfer to WOU. Look up how your classes transfer here: <br><a href="https://wou.edu/admission/transfer/how-credits-transfer/">https://wou.edu/admission/transfer/how-credits-transfer/</a></li>
+                <li>Want to take classes at both @Model.CollegeName and WOU? Checkout our Degree Partnership Program:a <br><a href="https://wou.edu/admission/degree-partnership-program/">https://wou.edu/admission/degree-partnership-program/</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@*==========================================================================Page 2=====================================================================================*@
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="https://d3e7od0na2igqa.cloudfront.net/wp-content/blogs.dir/613/files/2024/12/wolves_wordmark_CLR.png" alt="wou logo with text: *Western OREGON University*" width="300px";>
+        </div>
+    </div>
+
+    <div class="row page2-header-row">
+        <h3 id="page2-header">Transfer your @Model.CollegeName degree! Earn a @Model.Degree in:</h3>
+        <h4 id="page2-major">@Model.Major</h4>
+    </div>
+
+    <div class="row 4year-plan">
+        <h3 class="sample-grey">SAMPLE 4 YEAR PLAN</h3>
+        <div class="col-md-7">
+            <h4 class="red-section-header">YEAR ONE</h4>
+            <table>
+                <thead>
+                    <tr class="table-header">
+                        <td class="table-headers">
+                            @Model.CollegeName COURSE
+                        </td>
+                        <td class="table-headers">
+                            CREDITS +2192
+                        </td>
+                        <td class="table-headers">
+                            WOU EQUIVALENT
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                        @if (Model.Year1 != null && Model.Year1.Any())
+                        {
+                            @foreach (var course in Model.Year1)
+                            {
+                                <tr>
+                                    <td>
+                                        @course.TransferCourse
+                                    </td>
+                                    <td>
+                                        @course.TransferCredits
+                                    </td>
+                                    <td>
+                                        @course.WouEquivalent
+                                    </td>
+                                </tr>
+                            }
+                        }
+                </tbody>
+            </table>
+
+            <h4 class="red-section-header">YEAR TWO</h4>
+            <table>
+                <thead>
+                    <tr class="table-header">
+                        <td class="table-headers">
+                            @Model.CollegeName COURSE
+                        </td>
+                        <td class="table-headers">
+                            CREDITS +2192
+                        </td>
+                        <td class="table-headers">
+                            WOU EQUIVALENT
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Year2 != null && Model.Year2.Any())
+                    {
+                        @foreach (var course in Model.Year2)
+                        {
+                            <tr>
+                                <td>
+                                    @course.TransferCourse
+                                </td>
+                                <td>
+                                    @course.TransferCredits
+                                </td>
+                                <td>
+                                    @course.WouEquivalent
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-5">
+            <h4 class="red-section-header">Junior</h4>
+            <table>
+                <thead>
+                    <tr class="table-header">
+                        <td class="table-headers">
+                            WOU COURSE
+                        </td>
+                        <td  class="table-headers">
+                            CREDITS
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Junior != null && Model.Junior.Any())
+                    {
+                        @foreach (var course in Model.Junior)
+                        {
+                            <tr>
+                                <td>
+                                    @course.Course
+                                </td>
+                                <td>
+                                    @course.Credits
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+            <h4 class="red-section-header">SENIOR</h4>
+            <table>
+                <thead>
+                    <tr class="table-header">
+                        <td class="table-headers">
+                            WOU COURSE
+                        </td>
+                        <td class="table-headers">
+                            CREDITS
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Senior != null && Model.Senior.Any())
+                    {
+                        @foreach (var course in Model.Senior)
+                        {
+                            <tr>
+                                <td>
+                                    @course.Course
+                                </td>
+                                <td>
+                                    @course.Credits
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<form asp-controller="Home" asp-action="DownloadPdf" method="post">
+    @Html.HiddenFor(model => model.CollegeName)
+    @Html.HiddenFor(model => model.Degree)
+    @Html.HiddenFor(model => model.Major)
+    @Html.HiddenFor(model => model.AdvisorName)
+    @Html.HiddenFor(model => model.AdvisorEmail)
+
+    @for (int i = 0; i < Model.ImportantNotes.Count; i++)
+    {
+        @Html.HiddenFor(model => model.ImportantNotes[i])
+    }
+
+    @for (int i = 0; i < Model.Year1.Count; i++)
+    {
+        @Html.HiddenFor(model => model.Year1[i].TransferCourse)
+        @Html.HiddenFor(model => model.Year1[i].TransferCredits)
+        @Html.HiddenFor(model => model.Year1[i].WouEquivalent)
+    }
+
+    @for (int i = 0; i < Model.Year2.Count; i++)
+    {
+        @Html.HiddenFor(model => model.Year2[i].TransferCourse)
+        @Html.HiddenFor(model => model.Year2[i].TransferCredits)
+        @Html.HiddenFor(model => model.Year2[i].WouEquivalent)
+    }
+
+    @for (int i = 0; i < Model.Junior.Count; i++)
+    {
+        @Html.HiddenFor(model => model.Junior[i].Course)
+        @Html.HiddenFor(model => model.Junior[i].Credits)
+    }
+
+    @for (int i = 0; i < Model.Senior.Count; i++)
+    {
+        @Html.HiddenFor(model => model.Senior[i].Course)
+        @Html.HiddenFor(model => model.Senior[i].Credits)
+    }
+
+    <button type="submit" class="btn btn-primary">Download PDF</button>
+</form>

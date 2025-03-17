@@ -1,0 +1,311 @@
+﻿@model transferguide.Models.Transfer
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="container">
+        <form asp-controller="Home" asp-action="Report" method="post">
+
+    @*==========================================COLLEGE NAME===========================================*@
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="CollegeName">College Name:</label><br>
+                    <select asp-for="CollegeName" id="CollegeName" name="CollegeName">
+                        <option value="CCC" asp-for="CollegeName">Chemeketa Community College</option>
+                        <option value="LBCC" asp-for="CollegeName">Linn-Benton Community College</option>
+                        <option value="PCC" asp-for="CollegeName">Portland Community College</option>
+                    </select>
+                </div>
+
+    @*============================================DEGREE===============================================*@
+
+                <div class="col-md-4">
+                    <label for="Degree">Degree:</label><br>
+                    <select asp-for="Degree" id="Degree" name="Degree">
+                        <option value="BS" asp-for="Degree">Bachelor of Science</option>
+                        <option value="BA" asp-for="Degree">Bachelor of Arts</option>
+                    </select>
+                </div>
+    
+    @*==============================================MAJOR==============================================*@
+
+                <div class="col-md-4">
+                    <label for="Major">Major</label><br>
+                    <select asp-for="Major" id="Major" name="Major">
+                        <option value="Psychology" asp-for="Major">Psychology</option>    
+                        <option value="Computer Science" asp-for="Major">Computer Science</option>
+                    </select>
+                </div>
+            </div>
+
+    @*========================================ADVISOR NAME=============================================*@
+            
+            <div class="row">
+                <div class="col-md-6">    
+                    <label for="AdvisorName">Faculty Advisor Name: </label><br>
+                    <input type="text" id="AdvisorName" name="AdvisorName" asp-for="AdvisorName">
+                </div>
+
+    @*========================================ADVISOR EMAIL============================================*@
+
+                <div class="col-md-6">
+                    <label for="AdvisorEmail">Faculty Advisor Email: </label><br>
+                    <input type="text" id="AdvisorEmail" name="AdvisorEmail" asp-for="AdvisorEmail">
+                </div>
+            </div>
+
+    @*========================================IMPORTANT NOTES==========================================*@
+
+            <div class="row">
+                <label for="ImportantNotes">Important Notes:</label><br>
+                <input type="text" id="ImportantNotes" name="ImportantNotes" asp-formaction="ImportantNotes"><br>
+                <button type="button" onclick="duplicateField('ImportantNotes')">+</button>
+            </div>
+
+    @*==========================================YEAR 1=================================================*@
+
+            <div id="transferCoursesContainer">
+                @for (int i = 0; i < Model.Year1.Count; i++)
+                {
+                    <div class="row course-entry">
+                        <div class="col-md-4">
+                            <label>Transfer Course:</label>
+                            <input asp-for="Year1[i].TransferCourse" class="form-control" />
+                            <span asp-validation-for="Year1[i].TransferCourse" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Transfer Credits:</label>
+                            <input asp-for="Year1[i].TransferCredits" type="number" min="0" max="10" class="form-control" />
+                            <span asp-validation-for="Year1[i].TransferCredits" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label>WOU Equivalent:</label>
+                            <input asp-for="Year1[i].WouEquivalent" class="form-control" />
+                            <span asp-validation-for="Year1[i].WouEquivalent" class="text-danger"></span>
+                        </div>
+                        <button type="button" class="remove-btn" onclick="removeSection(this)">-</button>
+                    </div>
+                }
+            </div>
+
+            <button type="button" id="addTransferCourse" data-container="transferCoursesContainer" data-property="Year1">Add Course</button>
+
+    @*==========================================YEAR 2=================================================*@
+    
+            <div id="year2Container">
+                @for (int i = 0; i < Model.Year2.Count; i++)
+                {
+                    <div class="row course-entry">
+                        <div class="col-md-4">
+                            <label>Transfer Course:</label>
+                            <input asp-for="Year2[i].TransferCourse" class="form-control" />
+                            <span asp-validation-for="Year2[i].TransferCourse" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Transfer Credits:</label>
+                            <input asp-for="Year2[i].TransferCredits" type="number" min="0" max="10" class="form-control" />
+                            <span asp-validation-for="Year2[i].TransferCredits" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label>WOU Equivalent:</label>
+                            <input asp-for="Year2[i].WouEquivalent" class="form-control" />
+                            <span asp-validation-for="Year2[i].WouEquivalent" class="text-danger"></span>
+                        </div>
+                        <button type="button" class="remove-btn" onclick="removeSection(this)">-</button>
+                    </div>
+                }
+            </div>
+            <button type="button" id="addYear2Course" data-container="year2Container" data-property="Year2">Add Course</button>
+
+    @*==========================================JUNIOR=================================================*@
+
+            <div id="JuniorContainer">
+                @for (int i = 0; i < Model.Junior.Count; i++)
+                {
+                    <div class="row course-entry">
+                        <div class="col-md-4">
+                            <label>Course:</label>
+                            <input asp-for="Junior[i].Course" class="form-control" />
+                            <span asp-validation-for="Junior[i].Course" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Credits:</label>
+                            <input asp-for="Junior[i].Credits" type="number" min="0" max="10" class="form-control" />
+                            <span asp-validation-for="Junior[i].Credits" class="text-danger"></span>
+                        </div>
+                        <button type="button" class="remove-btn" onclick="removeSection(this)">-</button>
+                    </div>
+                }
+            </div>
+            <button type="button" id="addJuniorCourse" data-container="JuniorContainer" data-property="Junior">Add Course</button>
+            
+    @*==========================================SENIOR=================================================*@
+
+            <div id="SeniorContainer">
+                @for (int i = 0; i < Model.Senior.Count; i++)
+                {
+                    <div class="row course-entry">
+                        <div class="col-md-4">
+                            <label>Course:</label>
+                            <input asp-for="Senior[i].Course" class="form-control" />
+                            <span asp-validation-for="Senior[i].Course" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Credits:</label>
+                            <input asp-for="Senior[i].Credits" type="number" min="0" max="10" class="form-control" />
+                            <span asp-validation-for="Senior[i].Credits" class="text-danger"></span>
+                        </div>
+                        <button type="button" class="remove-btn" onclick="removeSection(this)">-</button>
+                    </div>
+                }
+            </div>
+            <button type="button" id="addSeniorCourse" data-container="SeniorContainer" data-property="Senior">Add Course</button>
+            
+    @*==========================================SUBMIT=================================================*@
+
+            <button type="submit">submit</button>
+        </form>
+    </div>
+
+    @*==========================================SCRIPT=================================================*@
+
+    <script>
+        function duplicateField(fieldId) {
+            let field = document.getElementById(fieldId);
+            let clone = field.cloneNode(true);
+            clone.value = "";
+            field.parentNode.insertBefore(clone, field.nextSibling);
+        }
+
+        function duplicateSection(sectionId) {
+            let section = document.getElementById(sectionId);
+            let clone = section.cloneNode(true);
+            section.parentNode.insertBefore(clone, section.nextSibling);
+        }
+        // Function to add a new course entry
+        function addCourseEntry(buttonElement) {
+            // Get the container that's related to this button
+            const containerId = buttonElement.getAttribute('data-container');
+            const propertyName = buttonElement.getAttribute('data-property');
+            const container = document.getElementById(containerId);
+            
+            if (!container || !propertyName) {
+                console.error('Missing container ID or property name');
+                return;
+            }
+            
+            // Get existing entries to determine the next index
+            const courseEntries = container.getElementsByClassName('course-entry');
+            const newIndex = courseEntries.length;
+            
+            // Create new entry
+            const newCourseEntry = document.createElement('div');
+            newCourseEntry.className = 'row course-entry';
+            newCourseEntry.innerHTML = `
+                <div class="col-md-4">
+                    <label>Transfer Course:</label>
+                    <input name="${propertyName}[${newIndex}].TransferCourse" class="form-control" />
+                    <span class="text-danger" data-valmsg-for="${propertyName}[${newIndex}].TransferCourse"></span>
+                </div>
+                <div class="col-md-4">
+                    <label>Transfer Credits:</label>
+                    <input name="${propertyName}[${newIndex}].TransferCredits" type="number" min="0" max="10" class="form-control" />
+                    <span class="text-danger" data-valmsg-for="${propertyName}[${newIndex}].TransferCredits"></span>
+                </div>
+                <div class="col-md-4">
+                    <label>WOU Equivalent:</label>
+                    <input name="${propertyName}[${newIndex}].WouEquivalent" class="form-control" />
+                    <span class="text-danger" data-valmsg-for="${propertyName}[${newIndex}].WouEquivalent"></span>
+                </div>
+                <button type="button" class="remove-btn" onclick="removeSection(this)">-</button>
+            `;
+            
+            container.appendChild(newCourseEntry);
+            
+            // If using client-side validation, you might need to update the validation
+            if (typeof $.validator !== 'undefined') {
+                $("form").validate().element(`${propertyName}[${newIndex}].TransferCourse`);
+                $("form").validate().element(`${propertyName}[${newIndex}].TransferCredits`);
+                $("form").validate().element(`${propertyName}[${newIndex}].WouEquivalent`);
+            }
+        }
+
+        // Function to remove a course entry
+        function removeSection(button) {
+            const entry = button.closest('.course-entry');
+            const container = entry.closest('[id$="Container"]');
+            const propertyName = findPropertyNameFromContainer(container);
+            
+            entry.remove();
+            
+            // Reindex the remaining entries
+            if (propertyName) {
+                reindexEntries(container, propertyName);
+            }
+        }
+
+        // Helper function to find property name from container
+        function findPropertyNameFromContainer(container) {
+            // Find the associated add button
+            const addButton = document.querySelector(`[data-container="${container.id}"]`);
+            
+            if (addButton) {
+                return addButton.getAttribute('data-property');
+            }
+            
+            // Fallback: try to determine property name from input names
+            const firstInput = container.querySelector('input');
+            if (firstInput && firstInput.name) {
+                const match = firstInput.name.match(/^([^[]+)/);
+                if (match) {
+                    return match[1];
+                }
+            }
+            
+            return null;
+        }
+
+        // Function to reindex entries after removal
+        function reindexEntries(container, propertyName) {
+            const entries = container.getElementsByClassName('course-entry');
+            
+            for (let i = 0; i < entries.length; i++) {
+                const inputs = entries[i].querySelectorAll('input');
+                const validationSpans = entries[i].querySelectorAll('span.text-danger');
+                
+                inputs.forEach(input => {
+                    // Extract the property part after the array index
+                    const propMatch = input.name.match(/\]\.(.*)/);
+                    if (propMatch) {
+                        const propertyPart = propMatch[1];
+                        input.name = `${propertyName}[${i}].${propertyPart}`;
+                        input.id = `${propertyName}_${i}__${propertyPart}`;
+                    }
+                });
+                
+                validationSpans.forEach(span => {
+                    const forAttr = span.getAttribute('data-valmsg-for');
+                    if (forAttr) {
+                        const propMatch = forAttr.match(/\]\.(.*)/);
+                        if (propMatch) {
+                            const propertyPart = propMatch[1];
+                            span.setAttribute('data-valmsg-for', `${propertyName}[${i}].${propertyPart}`);
+                        }
+                    }
+                });
+            }
+        }
+
+        // Initialize add buttons when the document loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners to all add buttons
+            const addButtons = document.querySelectorAll('[id^="add"][id$="Course"]');
+            addButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    addCourseEntry(this);
+                });
+            });
+        });
+    </script>

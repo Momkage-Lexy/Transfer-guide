@@ -1,0 +1,124 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  width: 816px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+.banner {
+  background-color: #db0a29;
+  color: white;
+  font-family: "Montserrat", serif;
+  font-style: ExtraBold;
+}
+
+#heading{
+  font-size: 5em;
+  font-weight: 800;
+  text-align: center;
+}
+
+#subheading{
+  font-size: 1.8em;
+  font-weight: 600;
+  text-align: center;
+}
+
+#earn-a{
+  font-family: "Montserrat", serif;
+  font-weight: 200;
+  font-size: 1.5em;
+}
+
+#major{
+  font-family: "Montserrat", serif;
+  font-weight: 800;
+  font-size: 2em; 
+}
+
+.red-section-header{
+  color: #db0a29;
+  font-family: "Montserrat", serif;
+  font-weight: 800;
+  font-size: 1.5em; 
+}
+
+.grey-box{
+  background-color: #C4C6C8;
+  padding: 5%;
+  border: 1px dotted rgb(90, 85, 85);
+}
+
+.need-help-body{
+  font-family: "Montserrat", serif;
+}
+
+#logo-email{
+  font-family: "Montserrat", serif;
+  font-weight: 800;
+}
+
+.step2{
+  font-family: "Montserrat", serif;
+}
+
+.black-bold-subheader{
+  font-weight: 800;
+  font-size: 1.3em;
+}
+
+#page2-header{
+  font-family: "Montserrat", serif;
+  font-weight: 400;
+  font-size: 1.3em;
+}
+
+#page2-major{
+  font-family: "Montserrat", serif;
+  font-weight: 800;
+  font-size: 2em;
+}
+
+.sample-grey{
+  font-family: "Montserrat", serif;
+  font-weight: 600;
+  font-size: 2em;
+  color: grey;
+}
+
+.table-headers{
+  color: grey;
+  font-family: "Montserrat", serif;
+  font-weight: 600;
+  font-size: 0.8em;
+}
+
+.table-header{
+  border-bottom: 1px solid #db0a29;
+}
