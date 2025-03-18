@@ -1,5 +1,11 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using DinkToPdf;
 using DinkToPdf.Contracts;
+using System.IO;
+using transferguide.Services;
+using transferguide.Utilities;
 
 namespace transferguide;
 
@@ -11,9 +17,14 @@ public class Program
 
         // Add services to the container.
         builder.Services.AddControllersWithViews();
-        
-        // Register the converter as a singleton
+
         builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+        builder.Services.AddScoped<IPdfService, PdfService>();
+
+        var context = new CustomAssemblyLoadContext();
+        context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "libwkhtmltox.dll"));
+
+
 
         var app = builder.Build();
 

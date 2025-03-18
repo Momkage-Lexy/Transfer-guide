@@ -4,6 +4,8 @@
     ViewData["Title"] = "Report";
 }
 
+<form asp-action="Report" method="post">
+    <div class="container">
 <div class="container">
     <div class="row banner">
         <h1 id="heading">TRANSFER GUIDE</h1>
@@ -231,43 +233,9 @@
         </div>
     </div>
 </div>
-<form asp-controller="Home" asp-action="DownloadPdf" method="post">
-    @Html.HiddenFor(model => model.CollegeName)
-    @Html.HiddenFor(model => model.Degree)
-    @Html.HiddenFor(model => model.Major)
-    @Html.HiddenFor(model => model.AdvisorName)
-    @Html.HiddenFor(model => model.AdvisorEmail)
-
-    @for (int i = 0; i < Model.ImportantNotes.Count; i++)
-    {
-        @Html.HiddenFor(model => model.ImportantNotes[i])
-    }
-
-    @for (int i = 0; i < Model.Year1.Count; i++)
-    {
-        @Html.HiddenFor(model => model.Year1[i].TransferCourse)
-        @Html.HiddenFor(model => model.Year1[i].TransferCredits)
-        @Html.HiddenFor(model => model.Year1[i].WouEquivalent)
-    }
-
-    @for (int i = 0; i < Model.Year2.Count; i++)
-    {
-        @Html.HiddenFor(model => model.Year2[i].TransferCourse)
-        @Html.HiddenFor(model => model.Year2[i].TransferCredits)
-        @Html.HiddenFor(model => model.Year2[i].WouEquivalent)
-    }
-
-    @for (int i = 0; i < Model.Junior.Count; i++)
-    {
-        @Html.HiddenFor(model => model.Junior[i].Course)
-        @Html.HiddenFor(model => model.Junior[i].Credits)
-    }
-
-    @for (int i = 0; i < Model.Senior.Count; i++)
-    {
-        @Html.HiddenFor(model => model.Senior[i].Course)
-        @Html.HiddenFor(model => model.Senior[i].Credits)
-    }
-
-    <button type="submit" class="btn btn-primary">Download PDF</button>
+        
+        <button type="submit" formaction="@Url.Action("DownloadPdf", "Home")" class="btn btn-secondary">
+            Download PDF
+        </button>
+    </div>
 </form>

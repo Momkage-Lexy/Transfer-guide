@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("transferguide")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e5ceeb3a7613ed12959ca77387410e4ae661fbe5")]
 [assembly: System.Reflection.AssemblyProductAttribute("transferguide")]
 [assembly: System.Reflection.AssemblyTitleAttribute("transferguide")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
