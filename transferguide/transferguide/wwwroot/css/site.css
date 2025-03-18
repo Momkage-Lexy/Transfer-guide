@@ -127,7 +127,7 @@ body {
   padding: 5%;
 }
 
-.firstRow, .secondRow, #transferCoursesContainer, #year2Container{
+.firstRow, .secondRow, #transferCoursesContainer, #year2Container, #JuniorContainer, #SeniorContainer{
   padding: 2%;
 }
 
@@ -171,6 +171,7 @@ body {
   font-weight: 800;
   font-size: 1.8em;
   color: rgb(75, 75, 75);
+  padding-left: 0;
 }
 
 .deleteButtonCol{
@@ -198,7 +199,7 @@ body {
   font-weight: 800;
 }
 
-#addTransferCourse, #addYear2Course{
+#addTransferCourse, #addYear2Course, #addJuniorCourse, #addSeniorCourse{
   display: block;
   margin: auto;
   float: center;
@@ -215,4 +216,18 @@ body {
 
 .course-entry{
   padding-top: 2%;
+}
+
+.transferUpperClass{
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 1%;
+  width: 100%;
+}
+
+.transferNumberUpperClass{
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 1.4%;
+  width: 100%;
 }

@@ -10,6 +10,9 @@
     @*==========================================COLLEGE NAME===========================================*@
 
             <div class="row firstRow">
+            <h1>Transfer Guide Form</h1>
+            <h2>2025/2026</h2>
+            <h3>General</h3>
                 <div class="col-md-4">
                     <label for="CollegeName" class="firstRowHeaders">College Name:</label><br>
                     <select asp-for="CollegeName" id="CollegeName" name="CollegeName">
@@ -58,7 +61,7 @@
 
     @*========================================IMPORTANT NOTES==========================================*@
 
-            <div class="row thirdRow g-0">
+            <div class="row thirdRow">
                 <div class="col-md-11">
                     <label for="ImportantNotes" class="thirdRowHeaders">Important Notes:</label><br>
                     <input type="text" id="ImportantNotes" name="ImportantNotes" asp-formaction="ImportantNotes">
@@ -133,20 +136,21 @@
                 {
                     <div class="row course-entry">
                     <h3>Junior Year</h3>
-                        <div class="col-md-4">
-                            <label>Course:</label>
-                            <input asp-for="Junior[i].Course" class="form-control" />
+                        <div class="col-md-6">
+                            <label class="transferHeaders">Course:</label>
+                            <input asp-for="Junior[i].Course" class="form-control transferUpperClass" />
                             <span asp-validation-for="Junior[i].Course" class="text-danger"></span>
                         </div>
-                        <div class="col-md-4">
-                            <label>Credits:</label>
-                            <input asp-for="Junior[i].Credits" type="number" min="0" max="10" class="form-control" />
+                        <div class="col-md-5">
+                            <label class="transferHeaders">Credits:</label>
+                            <input asp-for="Junior[i].Credits" type="number" min="0" max="10" class="form-control transferNumberUpperClass" />
                             <span asp-validation-for="Junior[i].Credits" class="text-danger"></span>
                         </div>
-                        <button type="button" class="remove-btn" onclick="removeSection(this)">-</button>
+                        <div class="col-md-1 deleteButtonCol"><button type="button" class="remove-btn" onclick="removeSection(this)">x</button></div>
                     </div>
                 }
             </div>
+            
             <button type="button" id="addJuniorCourse" data-container="JuniorContainer" data-property="Junior">Add Course</button>
             
     @*==========================================SENIOR=================================================*@
@@ -156,17 +160,19 @@
                 {
                     <div class="row course-entry">
                     <h3>Senior Year</h3>
-                        <div class="col-md-4">
-                            <label>Course:</label>
-                            <input asp-for="Senior[i].Course" class="form-control" />
+                        <div class="col-md-6">
+                            <label class="transferHeaders">Course:</label>
+                            <input asp-for="Senior[i].Course" class="form-control transferUpperClass" />
                             <span asp-validation-for="Senior[i].Course" class="text-danger"></span>
                         </div>
-                        <div class="col-md-4">
-                            <label>Credits:</label>
-                            <input asp-for="Senior[i].Credits" type="number" min="0" max="10" class="form-control" />
+                        <div class="col-md-5">
+                            <label class="transferHeaders">Credits:</label>
+                            <input asp-for="Senior[i].Credits" type="number" min="0" max="10" class="form-control transferNumberUpperClass" />
                             <span asp-validation-for="Senior[i].Credits" class="text-danger"></span>
                         </div>
-                        <button type="button" class="remove-btn" onclick="removeSection(this)">-</button>
+                        <div class="col-md-1 deleteButtonCol">
+                            <button type="button" class="remove-btn deleteButtonCol" onclick="removeSection(this)">x</button>
+                        </div>
                     </div>
                 }
             </div>
