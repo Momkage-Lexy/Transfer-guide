@@ -4,14 +4,14 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <div class="container">
+    <div class="container formContainer">
         <form asp-controller="Home" asp-action="Report" method="post">
 
     @*==========================================COLLEGE NAME===========================================*@
 
-            <div class="row">
+            <div class="row firstRow">
                 <div class="col-md-4">
-                    <label for="CollegeName">College Name:</label><br>
+                    <label for="CollegeName" class="firstRowHeaders">College Name:</label><br>
                     <select asp-for="CollegeName" id="CollegeName" name="CollegeName">
                         <option value="CCC" asp-for="CollegeName">Chemeketa Community College</option>
                         <option value="LBCC" asp-for="CollegeName">Linn-Benton Community College</option>
@@ -22,7 +22,7 @@
     @*============================================DEGREE===============================================*@
 
                 <div class="col-md-4">
-                    <label for="Degree">Degree:</label><br>
+                    <label for="Degree" class="firstRowHeaders">Degree:</label><br>
                     <select asp-for="Degree" id="Degree" name="Degree">
                         <option value="BS" asp-for="Degree">Bachelor of Science</option>
                         <option value="BA" asp-for="Degree">Bachelor of Arts</option>
@@ -32,7 +32,7 @@
     @*==============================================MAJOR==============================================*@
 
                 <div class="col-md-4">
-                    <label for="Major">Major</label><br>
+                    <label for="Major" class="firstRowHeaders">Major:</label><br>
                     <select asp-for="Major" id="Major" name="Major">
                         <option value="Psychology" asp-for="Major">Psychology</option>    
                         <option value="Computer Science" asp-for="Major">Computer Science</option>
@@ -42,26 +42,30 @@
 
     @*========================================ADVISOR NAME=============================================*@
             
-            <div class="row">
+            <div class="row secondRow">
                 <div class="col-md-6">    
-                    <label for="AdvisorName">Faculty Advisor Name: </label><br>
+                    <label for="AdvisorName" class="secondRowHeaders">Faculty Advisor Name: </label><br>
                     <input type="text" id="AdvisorName" name="AdvisorName" asp-for="AdvisorName">
                 </div>
 
     @*========================================ADVISOR EMAIL============================================*@
 
                 <div class="col-md-6">
-                    <label for="AdvisorEmail">Faculty Advisor Email: </label><br>
+                    <label for="AdvisorEmail" class="secondRowHeaders">Faculty Advisor Email: </label><br>
                     <input type="text" id="AdvisorEmail" name="AdvisorEmail" asp-for="AdvisorEmail">
                 </div>
             </div>
 
     @*========================================IMPORTANT NOTES==========================================*@
 
-            <div class="row">
-                <label for="ImportantNotes">Important Notes:</label><br>
-                <input type="text" id="ImportantNotes" name="ImportantNotes" asp-formaction="ImportantNotes"><br>
-                <button type="button" onclick="duplicateField('ImportantNotes')">+</button>
+            <div class="row thirdRow g-0">
+                <div class="col-md-11">
+                    <label for="ImportantNotes" class="thirdRowHeaders">Important Notes:</label><br>
+                    <input type="text" id="ImportantNotes" name="ImportantNotes" asp-formaction="ImportantNotes">
+                </div>
+                <div class="col-md-1 buttonCol">
+                    <button type="button" onclick="duplicateField('ImportantNotes')" class="addButton">+</button>
+                </div>
             </div>
 
     @*==========================================YEAR 1=================================================*@
@@ -70,22 +74,23 @@
                 @for (int i = 0; i < Model.Year1.Count; i++)
                 {
                     <div class="row course-entry">
+                    <h3>Year 1 Courses</h3>
                         <div class="col-md-4">
-                            <label>Transfer Course:</label>
-                            <input asp-for="Year1[i].TransferCourse" class="form-control" />
+                            <label class="transferHeaders">Transfer Course:</label>
+                            <input asp-for="Year1[i].TransferCourse" class="form-control transfer" />
                             <span asp-validation-for="Year1[i].TransferCourse" class="text-danger"></span>
                         </div>
-                        <div class="col-md-4">
-                            <label>Transfer Credits:</label>
-                            <input asp-for="Year1[i].TransferCredits" type="number" min="0" max="10" class="form-control" />
+                        <div class="col-md-3">
+                            <label class="transferHeadersNumber">Transfer Credits:</label>
+                            <input asp-for="Year1[i].TransferCredits" type="number" min="0" max="10" class="form-control transferNumber" />
                             <span asp-validation-for="Year1[i].TransferCredits" class="text-danger"></span>
                         </div>
                         <div class="col-md-4">
-                            <label>WOU Equivalent:</label>
-                            <input asp-for="Year1[i].WouEquivalent" class="form-control" />
+                            <label class="transferHeaders">WOU Equivalent:</label>
+                            <input asp-for="Year1[i].WouEquivalent" class="form-control transfer" />
                             <span asp-validation-for="Year1[i].WouEquivalent" class="text-danger"></span>
                         </div>
-                        <button type="button" class="remove-btn" onclick="removeSection(this)">-</button>
+                        <div class="col-md-1 deleteButtonCol"><button type="button" class="remove-btn" onclick="removeSection(this)">x</button></div>
                     </div>
                 }
             </div>
@@ -98,26 +103,28 @@
                 @for (int i = 0; i < Model.Year2.Count; i++)
                 {
                     <div class="row course-entry">
+                        <h3>Year 2 Courses</h3>
                         <div class="col-md-4">
-                            <label>Transfer Course:</label>
-                            <input asp-for="Year2[i].TransferCourse" class="form-control" />
+                            <label class="transferHeaders">Transfer Course:</label>
+                            <input asp-for="Year2[i].TransferCourse" class="form-control transfer" />
                             <span asp-validation-for="Year2[i].TransferCourse" class="text-danger"></span>
                         </div>
-                        <div class="col-md-4">
-                            <label>Transfer Credits:</label>
-                            <input asp-for="Year2[i].TransferCredits" type="number" min="0" max="10" class="form-control" />
+                        <div class="col-md-3">
+                            <label class="transferHeadersNumber">Transfer Credits:</label>
+                            <input asp-for="Year2[i].TransferCredits" type="number" min="0" max="10" class="form-control transferNumber" />
                             <span asp-validation-for="Year2[i].TransferCredits" class="text-danger"></span>
                         </div>
                         <div class="col-md-4">
-                            <label>WOU Equivalent:</label>
-                            <input asp-for="Year2[i].WouEquivalent" class="form-control" />
+                            <label class="transferHeaders">WOU Equivalent:</label>
+                            <input asp-for="Year2[i].WouEquivalent" class="form-control transfer" />
                             <span asp-validation-for="Year2[i].WouEquivalent" class="text-danger"></span>
                         </div>
-                        <button type="button" class="remove-btn" onclick="removeSection(this)">-</button>
+                        <div class="col-md-1 deleteButtonCol"><button type="button" class="remove-btn" onclick="removeSection(this)">x</button></div>
                     </div>
                 }
             </div>
-            <button type="button" id="addYear2Course" data-container="year2Container" data-property="Year2">Add Course</button>
+
+                <button type="button" id="addYear2Course" data-container="year2Container" data-property="Year2">Add Course</button>
 
     @*==========================================JUNIOR=================================================*@
 
@@ -125,6 +132,7 @@
                 @for (int i = 0; i < Model.Junior.Count; i++)
                 {
                     <div class="row course-entry">
+                    <h3>Junior Year</h3>
                         <div class="col-md-4">
                             <label>Course:</label>
                             <input asp-for="Junior[i].Course" class="form-control" />
@@ -147,6 +155,7 @@
                 @for (int i = 0; i < Model.Senior.Count; i++)
                 {
                     <div class="row course-entry">
+                    <h3>Senior Year</h3>
                         <div class="col-md-4">
                             <label>Course:</label>
                             <input asp-for="Senior[i].Course" class="form-control" />

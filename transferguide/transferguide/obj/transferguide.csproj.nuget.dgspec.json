@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lexyb\\Transfer-guide\\transferguide\\transferguide\\transferguide.csproj": {}
+    "C:\\Users\\aramos23\\Transfer-guide\\transferguide\\transferguide\\transferguide.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lexyb\\Transfer-guide\\transferguide\\transferguide\\transferguide.csproj": {
+    "C:\\Users\\aramos23\\Transfer-guide\\transferguide\\transferguide\\transferguide.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lexyb\\Transfer-guide\\transferguide\\transferguide\\transferguide.csproj",
+        "projectUniqueName": "C:\\Users\\aramos23\\Transfer-guide\\transferguide\\transferguide\\transferguide.csproj",
         "projectName": "transferguide",
-        "projectPath": "C:\\Users\\lexyb\\Transfer-guide\\transferguide\\transferguide\\transferguide.csproj",
-        "packagesPath": "C:\\Users\\lexyb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lexyb\\Transfer-guide\\transferguide\\transferguide\\obj\\",
+        "projectPath": "C:\\Users\\aramos23\\Transfer-guide\\transferguide\\transferguide\\transferguide.csproj",
+        "packagesPath": "C:\\Users\\aramos23\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\aramos23\\Transfer-guide\\transferguide\\transferguide\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\lexyb\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\aramos23\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -79,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

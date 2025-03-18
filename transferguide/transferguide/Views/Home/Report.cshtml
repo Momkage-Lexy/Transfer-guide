@@ -234,6 +234,64 @@
     </div>
 </div>
         
+        <!-- Hidden inputs for model data -->
+        <input type="hidden" asp-for="CollegeName" />
+        <input type="hidden" asp-for="Degree" />
+        <input type="hidden" asp-for="Major" />
+        <input type="hidden" asp-for="AdvisorName" />
+        <input type="hidden" asp-for="AdvisorEmail" />
+        
+        <!-- Year 1 Hidden Inputs -->
+        @if (Model.Year1 != null)
+        {
+            for (int i = 0; i < Model.Year1.Count; i++)
+            {
+                <input type="hidden" name="Year1[@i].TransferCourse" value="@Model.Year1[i].TransferCourse" />
+                <input type="hidden" name="Year1[@i].TransferCredits" value="@Model.Year1[i].TransferCredits" />
+                <input type="hidden" name="Year1[@i].WouEquivalent" value="@Model.Year1[i].WouEquivalent" />
+            }
+        }
+        
+        <!-- Year 2 Hidden Inputs -->
+        @if (Model.Year2 != null)
+        {
+            for (int i = 0; i < Model.Year2.Count; i++)
+            {
+                <input type="hidden" name="Year2[@i].TransferCourse" value="@Model.Year2[i].TransferCourse" />
+                <input type="hidden" name="Year2[@i].TransferCredits" value="@Model.Year2[i].TransferCredits" />
+                <input type="hidden" name="Year2[@i].WouEquivalent" value="@Model.Year2[i].WouEquivalent" />
+            }
+        }
+        
+        <!-- Junior Hidden Inputs -->
+        @if (Model.Junior != null)
+        {
+            for (int i = 0; i < Model.Junior.Count; i++)
+            {
+                <input type="hidden" name="Junior[@i].Course" value="@Model.Junior[i].Course" />
+                <input type="hidden" name="Junior[@i].Credits" value="@Model.Junior[i].Credits" />
+            }
+        }
+        
+        <!-- Senior Hidden Inputs -->
+        @if (Model.Senior != null)
+        {
+            for (int i = 0; i < Model.Senior.Count; i++)
+            {
+                <input type="hidden" name="Senior[@i].Course" value="@Model.Senior[i].Course" />
+                <input type="hidden" name="Senior[@i].Credits" value="@Model.Senior[i].Credits" />
+            }
+        }
+        
+        <!-- Important Notes Hidden Inputs -->
+        @if (Model.ImportantNotes != null)
+        {
+            for (int i = 0; i < Model.ImportantNotes.Count; i++)
+            {
+                <input type="hidden" name="ImportantNotes[@i]" value="@Model.ImportantNotes[i]" />
+            }
+        }
+        
         <button type="submit" formaction="@Url.Action("DownloadPdf", "Home")" class="btn btn-secondary">
             Download PDF
         </button>

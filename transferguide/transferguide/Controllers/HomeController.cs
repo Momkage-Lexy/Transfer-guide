@@ -3,26 +3,20 @@ using Microsoft.Extensions.Logging;
 using transferguide.Models;
 using transferguide.Services;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.IO;
-using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-
-
-using transferguide.Models;
 
 namespace transferguide.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger; 
-    private readonly IPdfService _pdfService; 
+    private readonly ILogger<HomeController> _logger;
+    private readonly IPdfService _pdfService;
 
-    public HomeController(
-        ILogger<HomeController> logger, IPdfService pdfService)
+    public HomeController(ILogger<HomeController> logger, IPdfService pdfService)
     {
-        _logger = logger; 
+        _logger = logger;
         _pdfService = pdfService;
     }
 
@@ -103,73 +97,38 @@ public class HomeController : Controller
 
         if (model.ImportantNotes == null)
             model.ImportantNotes = new List<string>();
-
+        // Store the model in TempData
+        TempData["TransferModel"] = System.Text.Json.JsonSerializer.Serialize(model);
         // Return the Report view with the validated and initialized model
         return View(model);
     }
 
+    [HttpGet]
+    public IActionResult GeneratePdf()
+    {
+        if (TempData["TransferModel"] is string serializedModel)
+        {
+            var model = System.Text.Json.JsonSerializer.Deserialize<Transfer>(serializedModel);
+            if (model != null)
+            {
+                var pdfBytes = _pdfService.GenerateTransferReportPdf(model);
+                return File(pdfBytes, "application/pdf", "TransferReport.pdf");
+            }
+        }
+        
+        return RedirectToAction("Index");
+    }
+    
     [HttpPost]
     public IActionResult DownloadPdf(Transfer model)
     {
-        // Ensure lists are initialized to avoid null reference exceptions
-        if (model.Year1 == null)
-            model.Year1 = new List<Year1Transfer>();
+        model.Year1 ??= new List<Year1Transfer>();
+        model.Year2 ??= new List<Year2Transfer>();
+        model.Junior ??= new List<JuniorClasses>();
+        model.Senior ??= new List<SeniorClasses>();
+        model.ImportantNotes ??= new List<string>();
 
-        if (model.Year2 == null)
-            model.Year2 = new List<Year2Transfer>();
-
-        if (model.Junior == null)
-            model.Junior = new List<JuniorClasses>();
-
-        if (model.Senior == null)
-            model.Senior = new List<SeniorClasses>();
-
-        if (model.ImportantNotes == null)
-            model.ImportantNotes = new List<string>();
-
-        // Render the Report view as an HTML string
-        var htmlContent = RenderViewAsString("Report", model);
-
-        // Generate the PDF using the PDF service
-        var pdfBytes = _pdfService.GenerateTransferReportPdf(model, htmlContent);
-
-        // Return the PDF as a downloadable file
+        var pdfBytes = _pdfService.GenerateTransferReportPdf(model);
         return File(pdfBytes, "application/pdf", "TransferReport.pdf");
-    }
-
-    // Helper method to render a view as a string
-    private string RenderViewAsString(string viewName, object model)
-    {
-        // Set the model for the view
-        ViewData.Model = model;
-
-        // Use a StringWriter to capture the rendered view
-        using var sw = new StringWriter();
-
-        // Get the view engine from the HTTP context services
-        var viewEngine = HttpContext.RequestServices.GetService(typeof(ICompositeViewEngine)) as ICompositeViewEngine;
-
-        // Find the view by name
-        var viewResult = viewEngine.FindView(ControllerContext, viewName, false);
-
-        // Throw an exception if the view is not found
-        if (viewResult.View == null)
-            throw new ArgumentNullException($"{viewName} does not match any available view");
-
-        // Create a ViewContext to render the view
-        var viewContext = new ViewContext(
-            ControllerContext,
-            viewResult.View,
-            ViewData,
-            TempData,
-            sw,
-            new HtmlHelperOptions()
-        );
-
-        // Render the view asynchronously and wait for completion
-        viewResult.View.RenderAsync(viewContext).GetAwaiter().GetResult();
-
-        // Return the rendered view as a string
-        return sw.GetStringBuilder().ToString();
     }
 }

@@ -19,7 +19,6 @@ html {
 
 body {
   margin-bottom: 60px;
-  width: 816px;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -121,4 +120,99 @@ body {
 
 .table-header{
   border-bottom: 1px solid #db0a29;
+}
+
+/* ========================================Index======================================== */
+.formContainer{
+  padding: 5%;
+}
+
+.firstRow, .secondRow, #transferCoursesContainer, #year2Container{
+  padding: 2%;
+}
+
+#CollegeName, #Degree, #Major, .transfer{
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 2%;
+  width: 100%;
+}
+
+.firstRowHeaders, .secondRowHeaders, .thirdRowHeaders, .transferHeaders{
+  padding: 2%;
+  font-weight: 800;
+}
+
+#AdvisorName, #AdvisorEmail{
+  padding: 1%;
+  border-radius: 20px;
+  border: 1px solid grey;
+  width: 100%;
+}
+
+.thirdRow{
+  padding: 2%;
+}
+
+#ImportantNotes{
+  padding: 0.5%;
+  border-radius: 20px;
+  border: 1px solid grey;
+  width: 100%;
+}
+
+.buttonCol{
+  padding-top: 5%;
+  padding-bottom: 0;
+}
+
+.addButton{
+  border: 1px solid rgba(0, 0, 0, 0);
+  font-weight: 800;
+  font-size: 1.8em;
+  color: rgb(75, 75, 75);
+}
+
+.deleteButtonCol{
+  padding-top: 3%;
+  padding-bottom: 0;
+  padding-left: 0;
+}
+
+.remove-btn{
+  border: 1px solid rgba(0, 0, 0, 0);
+  font-weight: 700;
+  font-size: 1.5em;
+  color: rgb(75, 75, 75);
+}
+
+.transferNumber{
+  border: 1px solid grey;
+  border-radius: 20px;
+  padding: 3%;
+  width: 100%;
+}
+
+.transferHeadersNumber{
+  padding: 2.5%;
+  font-weight: 800;
+}
+
+#addTransferCourse, #addYear2Course{
+  display: block;
+  margin: auto;
+  float: center;
+  width: 30%;
+  padding: 0.3%;
+  border-radius: 15px;
+  border: 1px solid rgba(123, 165, 255, 0);
+  background-image: linear-gradient(to bottom right, rgb(155, 209, 253), rgb(37, 132, 255));
+  color: white;
+  font-weight: 600;
+  font-size: 1.1em;
+  box-shadow: 0px 7px 25px rgb(131, 131, 131);
+}
+
+.course-entry{
+  padding-top: 2%;
 }

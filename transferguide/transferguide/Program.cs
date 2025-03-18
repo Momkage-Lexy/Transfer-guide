@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using DinkToPdf;
-using DinkToPdf.Contracts;
 using System.IO;
+using QuestPDF.Infrastructure;
 using transferguide.Services;
 using transferguide.Utilities;
 
@@ -14,16 +13,14 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
+        QuestPDF.Settings.License = LicenseType.Community;
         // Add services to the container.
         builder.Services.AddControllersWithViews();
 
-        builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
         builder.Services.AddScoped<IPdfService, PdfService>();
 
         var context = new CustomAssemblyLoadContext();
         context.LoadUnmanagedLibrary(Path.Combine(Directory.GetCurrentDirectory(), "libwkhtmltox.dll"));
-
 
 
         var app = builder.Build();
